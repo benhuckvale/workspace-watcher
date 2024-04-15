@@ -6,13 +6,16 @@
   "license": "ISC",
   "main": "index.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "jest"
   },
   "dependencies": {
     "fast-glob": "^3.3.2",
     "glob-to-regexp": "^0.4.1"
   },
   "devDependencies": {
-    "@types/glob-to-regexp": "^0.4.4"
+    "@types/glob-to-regexp": "^0.4.4",
+    "@types/jest": "^29.5.12",
+    "ts-jest": "^29.1.2"
   }
 }
