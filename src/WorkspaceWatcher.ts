@@ -35,6 +35,10 @@ class WorkspaceWatcher {
     this.fileWatcher = chokidar.watch(this.rootDir, {
       ignoreInitial: false,
       depth: 99,
+      // Useful to ignore these for now, but needs revising in case the
+      // application using WorkspaceWatcher is actually trying to process git
+      // workspaces say.
+      ignored: ["**/.git", "**/node_modules"],
     })
     this.fileWatcher.on("add", this.handleAdded.bind(this))
     this.fileWatcher.on("unlink", this.handleRemoved.bind(this))
