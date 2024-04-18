@@ -4,7 +4,8 @@
   "description": "Tools to help gather and serve information on workspaces in file system",
   "author": "Ben Huckvale",
   "license": "ISC",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest",
