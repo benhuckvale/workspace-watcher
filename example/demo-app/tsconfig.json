@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "baseUrl": "./",
+    "preserveSymlinks": true,
+    "paths": {
+      "workspace-watcher": ["node_modules/workspace-watcher"]
+    }
+  },
+  "include": ["./backend/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}

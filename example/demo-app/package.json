@@ -1,0 +1,16 @@
+{
+  "name": "demo-app",
+  "version": "0.0.1",
+  "description": "An example implementation of an application that uses workspace watcher",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/backend/app.js"
+  },
+  "author": "Ben Huckvale",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "workspace-watcher": "file:../.."
+  }
+}
