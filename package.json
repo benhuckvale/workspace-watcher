@@ -11,7 +11,8 @@
     "test": "jest",
     "lint": "eslint src/",
     "lint.example": "eslint example/demo-app/backend",
-    "format": "npx prettier src --write"
+    "format": "npx prettier src --write",
+    "format.example": "npx prettier example --write"
   },
   "dependencies": {
     "chokidar": "^3.6.0",
