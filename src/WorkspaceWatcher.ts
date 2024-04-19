@@ -11,13 +11,18 @@ interface WorkspaceEventMap {
   workspace_deleted: WorkspaceEventCallback
 }
 
+type WorkspaceData = {
+  path: string
+  cache: Map<string, any>
+}
+
 class WorkspaceWatcher {
   private rootDir: string
   private workspacePatterns: WorkspacePatterns
   private workspaceEventCallbacks: Partial<
     Record<keyof WorkspaceEventMap, WorkspaceEventCallback[]>
   >
-  private workspaces: Set<string>
+  private workspaces: Map<string, WorkspaceData>
   private fileWatcher: chokidar.FSWatcher | null = null
 
   constructor(rootDir: string, patterns: string[]) {
@@ -27,7 +32,7 @@ class WorkspaceWatcher {
       workspace_created: [],
       workspace_deleted: [],
     }
-    this.workspaces = new Set()
+    this.workspaces = new Map<string, WorkspaceData>()
   }
 
   public start() {
@@ -55,7 +60,11 @@ class WorkspaceWatcher {
       isWorkspace(workspaceDir, this.workspacePatterns)
     ) {
       // It's a new workspace
-      this.workspaces.add(workspaceDir)
+      const workspaceData: WorkspaceData = {
+        path: workspaceDir,
+        cache: new Map<string, any>(),
+      }
+      this.workspaces.set(workspaceDir, workspaceData)
       this.emitEvent("workspace_created", workspaceDir)
     }
   }
@@ -90,8 +99,8 @@ class WorkspaceWatcher {
     }
   }
 
-  all_workspaces(): string[] {
-    return Array.from(this.workspaces)
+  all_workspaces(): WorkspaceData[] {
+    return Array.from(this.workspaces.values())
   }
 
   public stop() {

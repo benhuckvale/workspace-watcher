@@ -38,7 +38,12 @@ describe("WorkspaceWatcher", () => {
       expect(createdCallback).toHaveBeenCalledWith(newDirPath)
       expect(deletedCallback).not.toHaveBeenCalled()
       // - the workspace to be registered
-      expect(watcher.all_workspaces()).toEqual([newDirPath])
+      expect(watcher.all_workspaces()).toEqual([
+        {
+          cache: new Map<string, any>(),
+          path: newDirPath,
+        },
+      ])
 
       createdCallback.mockClear()
       deletedCallback.mockClear()
